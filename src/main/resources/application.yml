@@ -1,0 +1,16 @@
+
+spring:
+  mail:
+    host: smtp.163.com
+    username: wedjg2019@163.com
+    password: qq8150037
+    default-encoding: UTF-8
+    fromMail:
+        addr: wedjg2019@163.com
+
+logging:
+  level:
+    root: info #日志配置DEBUG,INFO,WARN,ERROR
+    com.macro.mall: debug
+#  file: demo_log.log #配置日志生成路径
+#  path: /var/logs #配置日志文件名称
