@@ -7,6 +7,13 @@ spring:
     default-encoding: UTF-8
     fromMail:
         addr: wedjg2019@163.com
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
 
 logging:
   level:

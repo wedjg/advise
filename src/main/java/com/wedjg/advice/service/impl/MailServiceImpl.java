@@ -21,6 +21,7 @@ import java.util.Properties;
 
 /**
  * 	邮件服务实现类
+ * 	//TODO 目前邮件仅支持163邮箱内部的发送，不同邮箱之间发送邮件会报554错误
  *	@author wedjg
  *	@since 2019/05/16
  */
@@ -47,7 +48,7 @@ public class MailServiceImpl implements MailService {
         message.setTo(mail.getTo());
         message.setSubject(mail.getSubject());
         message.setText(mail.getContent());
-
+		message.setCc(this.from);
 
         try {
             mailSender.send(message);
@@ -100,6 +101,7 @@ public class MailServiceImpl implements MailService {
 		helper.setTo(mail.getTo());
 		helper.setSubject(mail.getSubject());
 		helper.setText(mail.getContent(), true);
+		helper.setCc(this.from);
 		return helper;
 	}
 	
@@ -107,11 +109,9 @@ public class MailServiceImpl implements MailService {
 	 *	发送高级邮件
 	 */
 	private void sendSeniorMessage(MailDto mail) {
-//		properties.put("userName", this.from);
 		MimeMessage message = mailSender.createMimeMessage();
 
 		try {
-			message.addRecipients(MimeMessage.RecipientType.CC, InternetAddress.parse(this.from));
 			MimeMessageHelper helper = this.getSeniorMessage(message, mail);
 			
 			// 发送带附件的邮件

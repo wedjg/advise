@@ -26,8 +26,8 @@ public class MailServiceImplTest {
     public void setUp() throws Exception {
         mail = new MailDto();
         mail.setTo("125490772@qq.com");
-        mail.setSubject("123");
-        mail.setContent("123");
+        mail.setSubject("advise的邮件");
+        mail.setContent(LocalDateTime.now().toString());
     }
 
     @Test
