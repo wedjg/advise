@@ -3,6 +3,9 @@ package com.wedjg.advice;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * @author wedjg
+ */
 @SpringBootApplication
 public class AdviceApplication {
 
