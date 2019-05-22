@@ -2,15 +2,19 @@ package com.wedjg.advice.service.impl;
 
 import com.wedjg.advice.dto.MailDto;
 import com.wedjg.advice.service.MailService;
+import com.wedjg.advice.util.MailUtil;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.ResourceUtils;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
 import javax.annotation.Resource;
+import java.io.File;
+import java.nio.file.Files;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -45,18 +49,12 @@ public class MailServiceImplTest {
 
     @Test
     public void sendTemplateMail() {
-//        Map<String, Object> model = new HashMap();
-//        model.put("username", "didi");
-//        String text = VelocityEngineUtils.mergeTemplateIntoString(
-//                velocityEngine, "template.vm", "UTF-8", model);
-    }
-
-    @Test
-    public void testThymeleaf() {
         Context context = new Context();
         context.setVariable("username", "wedjg");
-        String result = templateEngine.process("emailTemplate", context);
-        System.out.println(result);
+
+        mail.setContent(MailUtil.getHtml("emailTemplate", context));
+        //mailService.sendHtmlMail(mail);
     }
+
 
 }
