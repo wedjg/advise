@@ -29,6 +29,19 @@ public class MailDto extends MessageDto {
      * 静态资源ID
      */
     private String rscId;
+	
+	/**
+     * 邮件模板文件名
+     */
+    private String htmlFile;
+	
+	/**
+     * 邮件模板参数
+     */
+    private Map<String, String> parameter;
+	
+	
+	
 
     @Override
     public String toString() {
