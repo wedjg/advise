@@ -3,7 +3,7 @@ spring:
   mail:
     host: smtp.163.com
     username: wedjg2019@163.com
-    password: qq8150037
+    password: admin123
     default-encoding: UTF-8
     fromMail:
         addr: wedjg2019@163.com
