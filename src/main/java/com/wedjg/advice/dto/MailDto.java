@@ -2,14 +2,18 @@ package com.wedjg.advice.dto;
 
 import lombok.Data;
 
+import java.io.Serializable;
+import java.util.Map;
+
 /**
  * 邮件消息实体
  * @author Liao Jiajian
  * @date 2019-05-21
  */
 @Data
-public class MailDto extends MessageDto {
+public class MailDto extends MessageDto implements Serializable {
 
+    private static final long serialVersionUID = -7195235301815254445L;
     /**
      * 邮件发送方
      */
