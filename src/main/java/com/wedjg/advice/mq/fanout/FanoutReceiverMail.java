@@ -11,7 +11,7 @@ import org.thymeleaf.context.Context;
 import javax.annotation.Resource;
 
 /**
- * 邮件订阅消息接受
+ * 邮件订阅消息接受器
  * @author wedjg
  * @date 2019-05-22
  */
@@ -31,18 +31,25 @@ public class FanoutReceiverMail {
 	public void process(MailDto mailDto) {
 		this.sendMail(mailDto);
 	}
-	
-	public void sendMail(MailDto mailDto) {
 
-		System.out.println("怎么跑到我这里来了？");
-		
-//		if(mailDto.getHtmlFile() != null) {
-//			Context context = new Context();
-//			//将邮件参数放进context中
-//			mailDto.getParameter().forEach((k, v)-> context.setVariable(k, v));
-//
-//			mailDto.setContent(MailUtil.getHtml(mailDto.getHtmlFile(), context));
-//			mailService.sendHtmlMail(mailDto);
-//		}
+	/**
+	 * 发送邮件
+	 * @param mailDto
+	 */
+	private void sendMail(MailDto mailDto) {
+    	//若htmlFileName为空则发送简单邮件
+    	if (mailDto.getHtmlFileName() == null || "".equals(mailDto.getHtmlFileName())){
+			mailService.sendSimpleMail(mailDto);
+			return;
+		}
+
+    	//若htmlFileName不为空则发送html邮件
+		Context context = new Context();
+		//将邮件参数放进context中
+		mailDto.getParameter().forEach((k, v)-> context.setVariable(k, v));
+
+		mailDto.setContent(MailUtil.getHtml(mailDto.getHtmlFileName(), context));
+		System.out.println(mailDto.getContent());
+		mailService.sendHtmlMail(mailDto);
 	}
 }

@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 
 import javax.mail.AuthenticationFailedException;
 import javax.mail.MessagingException;
-import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
 import java.util.Properties;
@@ -112,6 +111,7 @@ public class MailServiceImpl implements MailService {
 		MimeMessage message = mailSender.createMimeMessage();
 
 		try {
+			//装载参数
 			MimeMessageHelper helper = this.getSeniorMessage(message, mail);
 			
 			// 发送带附件的邮件

@@ -25,12 +25,8 @@ public class FanoutSender {
         this.rabbitTemplate.convertAndSend("fanoutExchange","", context);
     }
 
-    public void sendMail() {
-        MailDto mail = new MailDto();
-        mail.setTo("125490772@qq.com");
-        mail.setSubject("打招呼");
+    public void sendMail(MailDto mail) {
         System.out.println("Sender : " + mail.toString());
-        AmqpTemplate a = rabbitTemplate;
         this.rabbitTemplate.convertAndSend("fanoutExchange","", mail);
     }
 }

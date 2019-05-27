@@ -22,10 +22,6 @@ public class FanoutRabbitConfig {
         return new Queue("fanout.mail");
     }
 
-    @Bean
-    public Queue testMessage() {
-        return new Queue("fanout.test");
-    }
 
     @Bean
     FanoutExchange fanoutExchange() {
@@ -36,8 +32,5 @@ public class FanoutRabbitConfig {
     Binding bindingExchangeMail(Queue mailMessage, FanoutExchange fanoutExchange) {
         return BindingBuilder.bind(mailMessage).to(fanoutExchange);
     }
-    @Bean
-    Binding bindingExchangeTest(Queue testMessage, FanoutExchange fanoutExchange) {
-        return BindingBuilder.bind(testMessage).to(fanoutExchange);
-    }
+
 }
