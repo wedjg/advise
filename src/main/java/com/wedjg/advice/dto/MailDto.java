@@ -7,13 +7,14 @@ import java.util.Map;
 
 /**
  * 邮件消息实体
+ * 发HTML的必要参数为to,subject,htmlFileName,parameter
  * @author Liao Jiajian
  * @date 2019-05-21
  */
 @Data
-public class MailDto extends MessageDto implements Serializable {
+public class MailDto extends MessageDto{
 
-    private static final long serialVersionUID = -7195235301815254445L;
+    private static final long serialVersionUID = -2537938346097834178L;
     /**
      * 邮件发送方
      */
@@ -37,7 +38,7 @@ public class MailDto extends MessageDto implements Serializable {
 	/**
      * 邮件模板文件名
      */
-    private String htmlFile;
+    private String htmlFileName;
 	
 	/**
      * 邮件模板参数
