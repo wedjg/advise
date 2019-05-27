@@ -17,7 +17,7 @@ spring:
   application:
     name: Spring-boot-rabbitmq
   rabbitmq:
-    host:
+    host: 192.168.184.128
     port: 5672
     username: admin
     password: admin
