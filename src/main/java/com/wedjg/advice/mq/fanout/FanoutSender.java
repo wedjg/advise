@@ -1,8 +1,11 @@
 package com.wedjg.advice.mq.fanout;
 
+import com.wedjg.advice.dto.MailDto;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
 
 /**
  * 订阅消息发送-测试
@@ -16,8 +19,18 @@ public class FanoutSender {
     private AmqpTemplate rabbitTemplate;
 
     public void send() {
-        String context ="hi, fanout msg";
+        String context ="hi, fanout msg!" + LocalDateTime.now();
         System.out.println("Sender : " + context);
+        AmqpTemplate a = rabbitTemplate;
         this.rabbitTemplate.convertAndSend("fanoutExchange","", context);
+    }
+
+    public void sendMail() {
+        MailDto mail = new MailDto();
+        mail.setTo("125490772@qq.com");
+        mail.setSubject("打招呼");
+        System.out.println("Sender : " + mail.toString());
+        AmqpTemplate a = rabbitTemplate;
+        this.rabbitTemplate.convertAndSend("fanoutExchange","", mail);
     }
 }

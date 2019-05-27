@@ -23,12 +23,21 @@ public class FanoutRabbitConfig {
     }
 
     @Bean
+    public Queue testMessage() {
+        return new Queue("fanout.test");
+    }
+
+    @Bean
     FanoutExchange fanoutExchange() {
         return new FanoutExchange("fanoutExchange");
     }
 
     @Bean
-    Binding bindingExchangeMail(Queue message, FanoutExchange fanoutExchange) {
-        return BindingBuilder.bind(message).to(fanoutExchange);
+    Binding bindingExchangeMail(Queue mailMessage, FanoutExchange fanoutExchange) {
+        return BindingBuilder.bind(mailMessage).to(fanoutExchange);
+    }
+    @Bean
+    Binding bindingExchangeTest(Queue testMessage, FanoutExchange fanoutExchange) {
+        return BindingBuilder.bind(testMessage).to(fanoutExchange);
     }
 }
