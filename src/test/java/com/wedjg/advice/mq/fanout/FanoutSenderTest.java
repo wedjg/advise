@@ -1,6 +1,7 @@
 package com.wedjg.advice.mq.fanout;
 
 import com.wedjg.advice.dto.MailDto;
+import com.wedjg.advice.util.DateUtil;
 import com.wedjg.advice.util.MailUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -39,7 +40,7 @@ public class FanoutSenderTest {
         mail.setHtmlFileName("emailTemplate");
         Map map = new HashMap(2);
         map.put("username", "wedjg");
-        map.put("time", LocalDateTime.now().toString());
+        map.put("time", DateUtil.getStandardTime());
         mail.setParameter(map);
 
         sender.sendMail(mail);
