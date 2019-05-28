@@ -1,6 +1,8 @@
 package com.wedjg.advice.mq.fanout;
 
 import com.wedjg.advice.dto.MailDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,18 +17,19 @@ import java.time.LocalDateTime;
 @Component
 public class FanoutSender {
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     private AmqpTemplate rabbitTemplate;
 
     public void send() {
         String context ="hi, fanout msg!" + LocalDateTime.now();
-        System.out.println("Sender : " + context);
-        AmqpTemplate a = rabbitTemplate;
+        logger.info("开始发送消息：" + context);
         this.rabbitTemplate.convertAndSend("fanoutExchange","", context);
     }
 
     public void sendMail(MailDto mail) {
-        System.out.println("Sender : " + mail.toString());
+        logger.info("开始发送消息：" + mail.toString());
         this.rabbitTemplate.convertAndSend("fanoutExchange","", mail);
     }
 }

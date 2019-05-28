@@ -7,7 +7,7 @@ import java.util.Map;
 
 /**
  * 邮件消息实体
- * 发HTML的必要参数为to,subject,htmlFileName,parameter
+ * 发HTML的必要参数为 to,subject,htmlFileName,parameter
  * @author Liao Jiajian
  * @date 2019-05-21
  */
