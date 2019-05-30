@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 
 /**
- * 订阅类MQ的配置
+ * 订阅模式MQ的配置
  * @author wedjg
  * @date 2019-05-21
  */
